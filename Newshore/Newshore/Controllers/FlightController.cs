@@ -17,7 +17,10 @@ namespace Newshore.Controllers
         }
 
         [HttpGet("search")]
-        public async Task<ActionResult<Journey>> GetJourney([FromQuery] string origin, [FromQuery] string destination)
-                => await _flightsService.GetJourney(origin, destination);
+        public async Task<ActionResult<Journey>> GetJourney([FromQuery] string origin, [FromQuery] string destination, [FromQuery] int flyLimit)
+        {
+            var journey = await _flightsService.GetJourney(origin, destination, flyLimit);
+            return journey == null ? BadRequest(_flightsService.Errors) : journey;
+        }
     }
 }

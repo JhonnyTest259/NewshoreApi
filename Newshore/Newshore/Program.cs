@@ -4,6 +4,7 @@ using Newshore.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddScoped<IFlightService, FlightService>();
 
 //Repositorio / repositiry
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();

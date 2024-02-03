@@ -8,6 +8,9 @@ namespace Newshore.Services
 
     public class FlightService : IFlightService
     {
+
+        public List<string> Errors { get; }
+
         private HttpClient _httpClient;
         private IFlightRepository _flightRepository;
 
@@ -16,7 +19,9 @@ namespace Newshore.Services
         {
             _flightRepository = flightRepository;
             _httpClient = httpClient;
+            Errors = new List<string>();
         }
+
 
         #region ApiCall
         public async Task<IEnumerable<Flight>> GetExternalApiData()
@@ -35,21 +40,43 @@ namespace Newshore.Services
         #endregion
 
 
-        public async Task<Journey> GetJourney(string origin, string destination)
+        public async Task<Journey> GetJourney(string origin, string destination, int? flyLimit)
         {
             var externalApiData = await GetExternalApiData();
 
             var flights = _flightRepository.GetFlights(origin, destination, externalApiData);
 
-            var journey = new Journey
+            if(ValidateLenghtOfFlights(flights,flyLimit))
             {
-                Flights = [],
-                Origin = origin,
-                Destination = destination,
-                Price = 300f
-            };
+                var journey = new Journey
+                {
+                    Flights = flights,
+                    Origin = origin,
+                    Destination = destination,
+                    Price = flights.Sum(f => f.Price)
+                };
 
-            return journey;
+                return journey;
+            }
+
+            return null;
+           
+        }
+
+        public bool ValidateLenghtOfFlights(List<Flights> flights, int? flyLimit = 0)
+        {
+            if(flights.Count == 0)
+            {
+                Errors.Add("La consulta no puede ser procesada.");
+                return false;
+            }
+
+            if(flyLimit != 0 && flights.Count > flyLimit)
+            {
+                Errors.Add("Se supero el numero de viajes.");
+                return false;
+            }
+            return true;
         }
     }
 }
