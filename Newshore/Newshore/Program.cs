@@ -1,9 +1,12 @@
+using Newshore.Repository;
 using Newshore.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+//Repositorio / repositiry
+builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 
 //Inyeccion de Http para consumir apis externas
 builder.Services.AddHttpClient<IFlightService, FlightService>(c =>

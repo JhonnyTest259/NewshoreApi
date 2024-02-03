@@ -17,9 +17,7 @@ namespace Newshore.Controllers
         }
 
         [HttpGet("search")]
-        public ActionResult<string> GetJourney([FromQuery] string origin, [FromQuery] string destination)
-        {
-            return Ok($"Origin: {origin}, Destination: {destination}");
-        }
+        public async Task<ActionResult<Journey>> GetJourney([FromQuery] string origin, [FromQuery] string destination)
+                => await _flightsService.GetJourney(origin, destination);
     }
 }
