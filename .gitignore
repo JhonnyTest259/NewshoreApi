@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/Newshore/.vs/Newshore
+/Newshore/Newshore/bin/Debug/net8.0
+/Newshore/Newshore/obj

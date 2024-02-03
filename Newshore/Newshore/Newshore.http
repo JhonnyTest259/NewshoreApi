@@ -1,0 +1,6 @@
+@Newshore_HostAddress = http://localhost:5096
+
+GET {{Newshore_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
