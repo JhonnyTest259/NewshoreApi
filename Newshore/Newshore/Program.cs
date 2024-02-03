@@ -9,7 +9,7 @@ builder.Services.AddScoped<IFlightService, FlightService>();
 //Repositorio / repositiry
 builder.Services.AddScoped<IFlightRepository, FlightRepository>();
 
-//Inyeccion de Http para consumir apis externas
+//http inject to call a external api
 builder.Services.AddHttpClient<IFlightService, FlightService>(c =>
 {
     c.BaseAddress = new Uri(builder.Configuration["BaseUrlFlights"]);
