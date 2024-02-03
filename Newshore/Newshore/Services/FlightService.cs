@@ -50,10 +50,10 @@ namespace Newshore.Services
             {
                 var journey = new Journey
                 {
-                    Flights = flights,
                     Origin = origin,
                     Destination = destination,
-                    Price = flights.Sum(f => f.Price)
+                    Price = flights.Sum(f => f.Price),
+                    Flights = flights,
                 };
 
                 return journey;
