@@ -1,6 +1,15 @@
+using Newshore.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+
+//Inyeccion de Http para consumir apis externas
+builder.Services.AddHttpClient<IFlightService, FlightService>(c =>
+{
+    c.BaseAddress = new Uri(builder.Configuration["BaseUrlFlights"]);
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
