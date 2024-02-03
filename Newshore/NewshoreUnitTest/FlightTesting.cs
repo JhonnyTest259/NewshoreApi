@@ -51,12 +51,9 @@ namespace NewshoreUnitTest
             mockFlightsService
                 .Setup(x => x.GetJourney("MZL", "BOG", 0))
                 .ReturnsAsync(expectedJourney);
-
             var controller = new FlightController(mockFlightsService.Object);
-
             var result = await controller.GetJourney("MZL", "BOG", 0);
-
-             Assert.IsType<Journey>(result.Value);
+            Assert.IsType<Journey>(result.Value);
         }
     }
 }
