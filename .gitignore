@@ -9,3 +9,7 @@
 /Newshore/NewshoreUnitTest/bin/Debug/net8.0
 /Newshore/NewshoreUnitTest/obj
 /Newshore/.vs/ProjectEvaluation
+
+# files
+Dockerfile*
+**/*.md
