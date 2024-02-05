@@ -15,3 +15,10 @@ using ASP.NET Core and EntityFramework Core.
 * Open solution in Visual Studio 2020
 * Set .Web project as Startup Project and build the project.
 * Run the application.
+
+## How To Run Test
+
+* Open solution in Visual Studio 2020
+* Set .Web project as Startup Project and build the project.
+* Open Text explorer.
+* Run Test Application.
