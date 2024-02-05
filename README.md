@@ -1,4 +1,6 @@
-# ASP.NET Core NewshoreApi
+# NewshoreApi
+
+# ASP.NET Core
 
 This template is a simple startup project to start with ABP
 using ASP.NET Core and EntityFramework Core.
