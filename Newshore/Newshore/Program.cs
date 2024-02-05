@@ -20,6 +20,16 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", app =>
+    {
+        app.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -29,9 +39,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:4200"));
+//app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins(["http://localhost:4200", "https://heroic-melba-a7c0af.netlify.app/"]));
 app.UseHttpsRedirection();
-app.UseCors();
+app.UseCors("AllowAll");
 app.UseAuthorization();
 
 app.MapControllers();
